@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">webServer</string>
+    <string name="btn_start">启动服务</string>
+    <string name="btn_stop">停止服务</string>
+    <string name="no_internet">未连接网络，请先链接网络！</string>
+    <string name="has_internet">      已连接网络！      </string>
+    <string name="internet_addr">请在浏览器中输入:</string>
+</resources>

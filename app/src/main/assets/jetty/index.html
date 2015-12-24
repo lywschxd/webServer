@@ -1,0 +1,170 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>VST全聚合 - 应用安装</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=10">
+    <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+    <link href="css/public.css" rel="stylesheet" type="text/css" id="csslink" />
+    <style type="text/css">
+    	@media screen and (min-width: 1300px) {
+    		.inittd1{
+				height:60px;
+			}
+			.inittd2{
+				height:60px;
+			}
+   		  	.jsMytd1{
+				height:60px;
+			}
+			.jsMytd2{
+				height:60px;
+			}
+    	}
+
+    	@media screen and (min-width: 1680px) {
+    		.inittd1{
+				height:70px;
+			}
+			.inittd2{
+				height:70px;
+			}
+   		  	.jsMytd1{
+				height:70px;
+			}
+			.jsMytd2{
+				height:70px;
+			}
+			body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, p, blockquote, table, th, td, embed, object, button {
+			    font-family: "宋体",Arial,Helvetica;
+			    -webkit-text-size-adjust:none;
+			   	font-size:105%;
+			    margin: 0;
+			    padding: 0;
+			    overflow: hidden;
+			}
+			.initstall{
+				 -webkit-text-size-adjust:none;
+			   	font-size:70%;
+			}
+			.file{
+				 -webkit-text-size-adjust:none;
+			   	font-size:70%;
+			}
+    	}
+
+    	#content .main{
+			background:#f6f6f4;
+			min-height:100%;
+			margin-top:0.03%;
+			width:100%;
+		    overflow:auto;
+		}
+		#content .main #maincenter{
+			margin:8% 0 0 22.3%;
+			background:#ffffff;
+			float:left;
+			width:55.4%;
+			min-height:50.6%;
+			border-radius:3px;
+			-moz-box-shadow:0px 5px 7px #f0f0f0 ;
+			-webkit-box-shadow:0px 5px 7px #f0f0f0;
+			box-shadow: 0px 5px 7px #f0f0f0;
+		    overflow:auto;
+		}
+		.file {
+		    position: relative;
+		    display: inline-block;
+		    background: #ffffff;
+		    border: 1px solid #00A0E9;
+		    border-radius: 3px;
+		    padding: 2% 3%;
+		    overflow: hidden;
+		    color: #00A0E9;
+		    text-decoration: none;
+		    text-indent: 0;
+		    margin-left:2.2%;
+		    float:left;
+		}
+		.file input {
+		    position: absolute;
+		    right: 0;
+		    top: 0;
+		    opacity: 0;
+		}
+    	.file-uploader-wrap{
+    		position: relative;
+    		width: 100%;
+    		height: 24px;
+    	}
+    	.file-uploader-wrap-fake{
+    		position: absolute;
+    		top: 0;
+    		left: 0;
+    		z-index: 1;
+    		height: 24px;
+    	}
+    	.file-uploader-wrap .file-uploader{
+    		position: relative;
+    		width: 100%;
+    		height: 24px;
+    		filter : alpha(opacity = 0);
+    		opacity: 0;
+    		z-index: 2;
+    		cursor: pointer;
+    	}
+    </style>
+  </head>
+  <body>
+  	<div id="content">
+  		<form action="">
+  			<!-- 头部 -->
+	  		<div id="banner">
+		   		<div class="logo"></div>
+		   		<ul class="function">
+		   			<!--<li><a href="index.html">推送播放</a></li>-->
+		   			<!--<li><a href="#" style="padding-left: 12.64%;">APP安装</a></li>-->
+		   			<!--<li><a href="app_all.html" style="padding-left: 13.64%;">应用管理</a></li>-->
+		   			<li><img id="focus" alt="" src="img/ic_jieping.png" style="margin-left: 17.5%;width:21.5%;height:20.8%">
+		   				 <a href="#" onclick="screencap()">
+		   				 <span style="padding-left: 4px;">截屏</span></a>
+		   			</li>
+		   		</ul>
+		   	</div>
+  			<!-- 中间 -->
+	  		<div class="main">
+				<div id="maincenter">
+					<div class="file-uploader-wrap">
+						<input type="file" class="file-uploader" name="myfile" id="myfile" multiple/>
+					</div>
+					<div class="tab">
+						<table  id="tbl" width="100%">
+							<tr>
+								<td class="inittd1">
+									<div style="float:left;margin-top:2%;-webkit-text-size-adjust:none;font-size:70%;color:#666666;">本地安装APP: </div>
+								</td>
+								<td class="inittd2">
+									<input id="app_upload" name="app_upload" type="button" value="选择APK文件" class="file">
+									<div id="fileNameSpan" style="float:left;margin-left:2%;margin-top:2%;-webkit-text-size-adjust:none;font-size:70%;width:65%;color:#666666;"></div>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="3" align="center" class="inittd1"><div style="border-bottom:1px solid #cccccc;margin-top:3%;"></div></td><!-- <hr color="#cccccc" size="1"/> -->
+							</tr>
+							<!--<tr>-->
+								<!--<td class="inittd1"><span class="inittext">URL安装APP:</span></td>-->
+								<!--<td class="inittd2">-->
+									<!--<input id="app_downurl" name="app_downurl" type="text" class="initinput"/>-->
+								<!--</td>-->
+								<!--<td class="inittd3"><input id="url_install" name="url_install" type="button" value="下载安装" class="initstall" onclick="app_download()"/></td>-->
+							<!--</tr>-->
+						</table>
+					</div>
+				</div>
+	  		</div>
+  		</form>
+  	</div>
+  </body>
+  <script type="text/javascript" src="js/man.js"></script>
+</html>
