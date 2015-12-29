@@ -5,4 +5,6 @@
     <string name="no_internet">未连接网络，请先链接网络！</string>
     <string name="has_internet">      已连接网络！      </string>
     <string name="internet_addr">请在浏览器中输入:</string>
+    <string name="btn_file_start">启动文件服务</string>
+    <string name="btn_file_stop">停止文件服务</string>
 </resources>

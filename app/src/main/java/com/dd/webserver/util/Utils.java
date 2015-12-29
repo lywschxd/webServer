@@ -17,6 +17,7 @@ public class Utils {
     public static Context JServerContext = null;
 
     public static String serverIpPort = null;
+    public static String serverFileIpPort = null;
     public static String serverUpload = "/upload";
     public static String serverScreencap = "/screencap";
 
@@ -32,6 +33,11 @@ public class Utils {
 
     public static boolean isServerIpPortVaild() {
         if(serverIpPort == null) return false;
+        return true;
+    }
+
+    public static boolean isServerFileIpPortVaild() {
+        if(serverFileIpPort == null) return false;
         return true;
     }
 

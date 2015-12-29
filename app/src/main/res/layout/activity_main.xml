@@ -12,6 +12,7 @@
     tools:context=".ui.MainActivity">
 
     <LinearLayout
+        android:id="@+id/server"
         android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -31,5 +32,28 @@
             android:enabled="false"
             android:textSize="36px"
             android:onClick="onButtonStart"/>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_below="@+id/server"
+        android:layout_centerHorizontal="true"
+        >
+        <TextView
+            android:id="@+id/fitext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="36px"
+            android:text="@string/no_internet"/>
+        <Button
+            android:id="@+id/file_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_start"
+            android:enabled="false"
+            android:textSize="36px"
+            android:onClick="onFileStart"/>
     </LinearLayout>
 </RelativeLayout>

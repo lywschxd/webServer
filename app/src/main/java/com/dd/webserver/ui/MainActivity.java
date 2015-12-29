@@ -2,11 +2,13 @@ package com.dd.webserver.ui;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.dd.webserver.R;
+import com.dd.webserver.jetty.server.FileServer;
 import com.dd.webserver.jetty.server.JServer;
 import com.dd.webserver.util.Utils;
 
@@ -20,10 +22,14 @@ import java.util.Enumeration;
  */
 public class MainActivity extends AppCompatActivity {
     private static final int PORT = 8084;
+    private static final int FILE_PORT = 8090;
     private TextView infoTextView;
+    private TextView fileTextView;
     private Button conButton;
+    private Button fileButton;
     private String mIpAddress;
     private JServer mJServer;
+    private FileServer mFileServer;
 
     private String mInfo = "";
 
@@ -33,30 +39,57 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         infoTextView = (TextView) findViewById(R.id.text);
+        fileTextView = (TextView) findViewById(R.id.fitext);
+
         conButton = (Button) findViewById(R.id.btn);
+        fileButton = (Button) findViewById(R.id.file_btn);
         mInfo = getResources().getString(R.string.internet_addr);
         try {
             mIpAddress = GetIpAddress();
             if(!mIpAddress.equals("")) {
                 infoTextView.setText(R.string.has_internet);
+                fileTextView.setText(R.string.has_internet);
+                Log.d("dddd", "text:"+fileTextView.getText());
                 conButton.setEnabled(true);
+                fileButton.setEnabled(true);
             }
         } catch (SocketException e) {
             e.printStackTrace();
         }
         mJServer = new JServer(this, PORT);
+        mFileServer = new FileServer(this, FILE_PORT);
+    }
+
+    @Override
+    protected void onDestroy() {
+        if(mJServer.isStarted()) mJServer.stop();
+        if(mFileServer.isStarted()) mFileServer.stop();
+        super.onDestroy();
     }
 
     public void onButtonStart(View view) {
         if(mJServer.isStarted()) {
             mJServer.stop();
             ((Button)view).setText(R.string.btn_start);
-            infoTextView.setText(R.string.has_internet);
+            infoTextView.setText(mIpAddress.isEmpty() ? R.string.no_internet : R.string.has_internet);
         }else {
             mJServer.start();
             ((Button)view).setText(R.string.btn_stop);
             Utils.serverIpPort = mInfo+"http://"+mIpAddress+":"+PORT;
             infoTextView.setText(mInfo+"http://"+mIpAddress+":"+PORT);
+        }
+    }
+
+    public void onFileStart(View view) {
+        if(mFileServer.isStarted()) {
+            mFileServer.stop();
+            ((Button)view).setText(R.string.btn_file_start);
+            fileTextView.setText(mIpAddress.isEmpty() ? R.string.no_internet : R.string.has_internet);
+        }else{
+            mFileServer.start();
+            ((Button)view).setText(R.string.btn_file_stop);
+            Utils.serverFileIpPort = mInfo+"http://"+mIpAddress+":"+FILE_PORT;
+            fileTextView.setText(mInfo+"http://"+mIpAddress+":"+FILE_PORT);
         }
     }
 

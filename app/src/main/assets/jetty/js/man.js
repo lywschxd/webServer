@@ -10,6 +10,16 @@ var screencap = function(){
 	}, "json");
 }
 
+//获得图片,后面跟图片名字
+var getpicture = function(){
+	$.get("/screencap?name=2.jpg", function(obj){
+		alert(obj.msg);
+		if (obj.suc == 0) {
+			window.open(obj.url)
+		}
+	}, "json");
+}
+
 //本地APP上载
 var app_upload = {
 	init : function(){
