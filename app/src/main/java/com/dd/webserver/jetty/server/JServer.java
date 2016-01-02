@@ -5,8 +5,10 @@ import android.content.res.AssetManager;
 import android.os.Environment;
 import android.util.Log;
 
+import com.dd.webserver.jetty.servlet.AppManagerServlet;
 import com.dd.webserver.jetty.servlet.ScreenCapServlet;
 import com.dd.webserver.jetty.servlet.UploadApkServlet;
+import com.dd.webserver.ui.PackageManager;
 import com.dd.webserver.util.Utils;
 
 import org.eclipse.jetty.server.Server;
@@ -31,6 +33,8 @@ public class JServer {
     private int mPort;
     private Server mServer;
     private File mWorkPathFile = null;
+    private PackageManager packageManager;
+    private AppManagerServlet managerServlet;
 
     public JServer(Context context, int port) {
         mContext = context;
@@ -38,6 +42,10 @@ public class JServer {
         mPort = port;
         mWorkPathFile = getWorkPath();
         Utils.configWorkPath = mWorkPathFile.getAbsolutePath()+"/"+Utils.CONFIG_ASSETS_DIR;
+
+        packageManager = PackageManager.getInstance(mContext);
+        packageManager.collectAppInfo();
+        managerServlet = new AppManagerServlet(mContext);
     }
 
     /**
@@ -52,6 +60,11 @@ public class JServer {
             ServletContextHandler servletHandler = new ServletContextHandler(ServletContextHandler.SESSIONS);
             servletHandler.addServlet(new ServletHolder(new UploadApkServlet()), Utils.serverUpload);
             servletHandler.addServlet(new ServletHolder(new ScreenCapServlet()), Utils.serverScreencap);
+            servletHandler.addServlet(new ServletHolder(managerServlet), Utils.serverAppList);
+            servletHandler.addServlet(new ServletHolder(managerServlet), Utils.serverAppRun);
+            servletHandler.addServlet(new ServletHolder(managerServlet), Utils.serverAppStop);
+            servletHandler.addServlet(new ServletHolder(managerServlet), Utils.serverAppDel);
+            servletHandler.addServlet(new ServletHolder(managerServlet), Utils.serverAppClear);
 
 
             //copy asserts to work path

@@ -12,6 +12,7 @@ public class Utils {
 
     public static String configWorkPath = null;
     public static String configDownloadPath = null;
+    public static String configAppPath = null;
 
     public static String CONFIG_LS = System.getProperty("line.separator");
     public static Context JServerContext = null;
@@ -20,6 +21,11 @@ public class Utils {
     public static String serverFileIpPort = null;
     public static String serverUpload = "/upload";
     public static String serverScreencap = "/screencap";
+    public static String serverAppList = "/app_list";
+    public static String serverAppRun = "/app_start";
+    public static String serverAppStop = "/app_stop";
+    public static String serverAppDel = "/app_del";
+    public static String serverAppClear = "/app_delcache";
 
     public static boolean isConfigWorkPathVaild() {
         if (configWorkPath == null || configWorkPath.isEmpty()) return false;
