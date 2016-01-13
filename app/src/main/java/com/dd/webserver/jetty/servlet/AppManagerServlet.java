@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
 
-import com.dd.webserver.ui.PackageManager;
+import com.dd.webserver.jetty.common.PackageManager;
 import com.dd.webserver.util.AppInfo;
 import com.dd.webserver.util.Utils;
 

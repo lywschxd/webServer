@@ -12,17 +12,22 @@
     tools:context=".ui.MainActivity">
 
     <LinearLayout
-        android:id="@+id/server"
+        android:id="@+id/webserver"
         android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:layout_centerInParent="true">
+        android:layout_centerHorizontal="true"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/webserver"/>
         <TextView
             android:id="@+id/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="36px"
+            android:textSize="32px"
             android:text="@string/no_internet"/>
         <Button
             android:id="@+id/btn"
@@ -30,22 +35,27 @@
             android:layout_height="wrap_content"
             android:text="@string/btn_start"
             android:enabled="false"
-            android:textSize="36px"
+            android:textSize="32px"
             android:onClick="onButtonStart"/>
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/filemanager"
         android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:layout_below="@+id/server"
+        android:layout_below="@+id/webserver"
         android:layout_centerHorizontal="true"
         >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/file_manager"/>
         <TextView
             android:id="@+id/fitext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="36px"
+            android:textSize="32px"
             android:text="@string/no_internet"/>
         <Button
             android:id="@+id/file_btn"
@@ -53,7 +63,45 @@
             android:layout_height="wrap_content"
             android:text="@string/btn_start"
             android:enabled="false"
-            android:textSize="36px"
+            android:textSize="32px"
             android:onClick="onFileStart"/>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_below="@+id/filemanager"
+        android:layout_centerHorizontal="true"
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ftp_server"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_ftp_setting"
+                android:onClick="onFtpSettings"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/ftp_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="32px"
+            android:text="@string/no_internet"/>
+        <Button
+            android:id="@+id/ftp_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_start"
+            android:enabled="false"
+            android:textSize="32px"
+            android:onClick="onFtpStart"/>
     </LinearLayout>
 </RelativeLayout>

@@ -1,4 +1,4 @@
-package com.dd.webserver.ui;
+package com.dd.webserver.jetty.common;
 
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
@@ -7,7 +7,6 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 
 import com.dd.webserver.util.AppInfo;
 import com.dd.webserver.util.Utils;
